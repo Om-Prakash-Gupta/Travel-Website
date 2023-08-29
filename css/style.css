@@ -1,0 +1,953 @@
+/*
+line-height: 1.7; ---> lines ka beech mein 1.7 ka gap hoga har element mein
+
+backgroud mein image use karne ke liye
+
+background: url();
+
+url ke ander image ka path
+
+background-position:center karne se image center mein aa gaya or agar screen size change v karenge to v image center mein maintained rahega
+
+background-repeat: no-repeat;
+
+ye karne se image repeat nhi karega jo by default repeat karta hai
+
+background-size: cover; ---> is in a full-screen layout where the background image is rich in detail
+
+background: linear-gradient(rgba(), rgba()), url();
+
+linear-gradient dene se pehle do rgba color ka mixture aa jaayega uska upar wo url wala image aa jaayega jo set kiye hain
+
+rgba mein a matlab alpha/opacity hota hai, jisko hum transparency ke liye use karte hain
+
+by default opacity ka value 1 set hota hai
+
+jab rgba mein 0,0,0 pass karte hain ye pure black color banta hai, or alpha one matlab zero transparency 
+
+to hum kisi v background ko dark karne ke liye black color dekar alpha value ko approx 0.5 set kar dete hain jisse
+dark background wala feel aa jaata hai
+
+agar website ko responsive banana hai to units ko pixels mein na likhe, % yaa em yaa rem mein units likho starting se hi
+
+margin or padding em mein dene se responsiveness achcha aata hai
+
+font-size 1.6rem matlab 16px ka 0.5em yaa 50% ho jaayega margin-bottom i.e. 8px ka margin-bottom set ho jaayega
+
+*** margin yaa padding em mein dene se, font-size ka according margin yaa padding set ho jaata hai ***
+
+2-3 color use karne se website jyada achcha lagega
+
+use black and white color then add any 1 extra color and apply it on different places to make good looking website
+
+max-width: 1200px ---> matlab isse jyada width nhi badhega, 1200px max width hai
+width: 90% ---> 90% of the available screen size
+margin: 0 auto ---> center mein karne ke liye 
+
+jisko center mein karna hai usko position absolute denge, or jiska respect mein center mein karna hai usko relative position
+denge
+
+header-content ko center mein karna hai header(parent) ka center mein
+
+isliye header content ko absolute position denge or header ko relative position denge
+
+object-fit: cover; ---> ye karne se image ka aspect ratio kharab nhi hoga jab screen size change karenge tab
+
+horizontal offset, vertical offset, blur, spread, color
+box-shadow: 0px 0px 20px 0px #aaa;
+jitna jyada blur hoga utna screen se upar uth jaayega
+
+#aaa ---> is light color
+
+dusra developer black color use karte hain or uska opacity (transparency) kam kar deta hai, wo v sahi hai
+
+box shadow iss tarah se dena hai ki box shadow de v de or pata v nhi chale ki box shadow diya hua hai, for better ui design
+
+a in rgba is alpha channel and it is a color component that represents the degree of transparency (or opacity) of a color 
+(i.e., the red, green and blue channels)
+
+linear gradient css google mein search karo phir bohot sara websites mein pehle se kuch color ka combination banaya hua hai
+usko use kar sakta hai
+
+hum cssgradient.io use kiye hain uska baad background option mein jaana hai
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+ye link header ke ander paste kar do phir hum icons use kar sakenge
+
+phir fontawesome.com mein jaakar koi v icon ka naam likho phir wahan se html ka code copy kar lo
+eg. icon names - route, strike, user, money
+
+fa-2x class dene se icons ka size double ho jaayega, 3x dene se triple and so on
+
+koi v div ko agar ek se jyada class dena hai to uska shortcut: .class1.class2 then hit enter
+
+
+
+
+
+
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+
+/* css reset */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ################################ HTML Elements Styling ############################### */
+html
+{
+    /* 62.5% matlab 10px */
+    font-size: 62.5%;
+}
+
+body
+{
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+}
+
+ul li
+{
+    /* disc nhi chahiye */
+    list-style: none;   
+}
+
+a
+{
+    /* 1.6 rem matlab 16px */
+    font-size: 1.6rem;
+    text-decoration: none;
+}
+
+p, li
+{
+    /* font-size 1.6rem matlab 16px ka 0.5 yaa 50% ho jaayega margin-bottom i.e. 8px ka margin-bottom  */
+    font-size: 1.6rem;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.15em;
+}
+
+h1, h2, h3
+{
+    margin-bottom: 0.5em;
+    letter-spacing: 0.15em;
+    font-weight: 500;   /* medium font weight */
+}
+
+/* ################################ Utility Classes ################################# */
+
+.container
+{
+    max-width: 1200px;
+    width: 80%;
+    /* width will be set to 90% of the available screen size */
+    margin: 0 auto;
+}
+
+/* large heading */
+.lg-heading
+{
+    font-size: 3.5rem;
+}
+
+/* medium heading */
+.md-heading
+{
+    /* 2.2rem matlab 22px */
+    font-size: 2.2rem;
+}
+
+.text-red
+{
+    color: #e63946;
+}
+
+.text-light
+{
+    /* not pure white */
+    color: #f4f4f4;
+}
+
+.text-black
+{
+    /* not pure black */
+    color: #333;
+}
+
+.text-gray
+{
+    color: #555;
+}
+
+.bg-dark
+{
+    background-color: #263238;
+}
+
+.btn
+{
+    /* margin or padding de paayenge inline-block karne se */
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    /* 
+        agar button ka ander ka text 32px hai toh padding ho jaayega 32*0.5 ---> 16px
+        isse responsiveness aayega website mein
+    */
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0.5em 0;
+}
+
+.btn-primary
+{
+    background-color: #fff;
+    border-radius: 10em;
+}
+
+.btn-primary:hover
+{
+    background-color: #ddd;
+}
+
+.btn-secondary
+{
+    border: 2px solid #e63946;
+    /* em unit isliye likhe taaki jitna bada text hai uska 1.5 times border radius ho jaaye */
+    border-radius: 1.5em;
+    background-color: #fff;
+}
+
+.btn-secondary:hover
+{
+    background-color: #fcf3f2;
+}
+
+/* ##################################### Header Styling ###################################### */
+.header
+{
+    position: relative;
+    height: 95vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ) , url(../img/header-image.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar
+{
+    padding: 1rem;
+}
+
+.navbar .logo
+{
+    float: left;
+}
+
+.navbar .nav-items
+{
+    float: right;
+    margin-top: 1rem;
+}
+
+.navbar .nav-item
+{
+    display: inline-block;
+    padding: 1rem;
+}
+
+/* a:link mein link pseudo class hai, simple a tag v select karenge to v same hi chiz hai */
+/* visited v ek pseudo class hai */
+.navbar a:link, .navbar a:visited
+{
+    color: #f4f4f4;
+}
+
+.navbar a
+{
+    padding-bottom: 0.3rem;
+}
+/* hover ek pseudo class hai */
+.navbar a:hover
+{
+    border-bottom: 1px solid #fff;
+}
+
+.navbar::after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* ################################## Header Content Styling ################################# */
+.header-content
+{
+    /* ye width isliye set kiye qki p tag ka contents next line mein chal jaa raha tha */
+    width: fit-content;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* thoda contrast badhane ke liye, background thoda dark kar denge */
+    /* background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)); */
+}
+
+
+.header-content h1
+{   font-weight: 700;
+    text-transform: uppercase;
+}
+
+.header-content p
+{
+    text-transform: uppercase;
+}
+
+/* ################################ Showcase Section Styling ################################## */
+
+.showcase
+{
+    /* light grayish shade */
+    background: #ddd;
+    padding: 10rem 0;
+}
+
+.row
+{
+    height: 350px;
+    /* #fff is pure white */
+    background: #fff;
+    /* horizontal offset, vertical offset, blur, spread, color */
+    box-shadow: 0px 0px 20px 0px #aaa;
+}
+
+.row1
+{
+    margin-bottom: 10rem;
+}
+
+.row1 .img-box, .row2 .text-box
+{
+    float: left;
+    width: 50%;
+}
+
+.row1 .text-box, .row2 .img-box
+{
+    float: right;
+    width: 50%;
+}
+
+.row .img-box
+{
+    /* apna parent row ka respect mein 100% height lega */
+    height: 100%;
+
+}
+
+.row .text-box
+{
+    padding: 3rem;
+}
+
+.row .img-box img
+{
+    /* jab responsive banayenge to margin or padding de paayenge inline-block hone se */
+    display: inline-block;
+    /* image apna parent ka 100% width lega */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* qki hum images or text ko float kiye the, baad mein responsive banane ke liye */
+.row::after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* ###################################### Features Section Styling ################################### */
+
+.features
+{
+    padding: 10rem 0;
+}
+
+.box-wrapper
+{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.24);
+}
+
+/* feature section wala mein teeno box ko ek box class diye or alag se box-1, box-2, box-3 class v diye hain */
+.box
+{
+    /* 3 box hai isliye sabko 33.33333% width de diye */
+    width: 33.333333333%;
+    float: left;
+    padding: 2rem;
+    text-align: center;
+}
+
+.box-1, .box-3
+{
+    background-color: #263238;
+    color: white;
+}
+
+.box-2
+{
+    background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
+    color: #fff;
+}
+
+.box-wrapper::after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* ############################ Footer Styling ########################## */
+
+.footer
+{
+    background: #263238;
+    color: #fff;
+    /* 2rem ---> 20px */
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer .social-media-links i
+{
+    margin: 2rem;
+}
+
+/* ############################ About Page Styling ############################## */
+
+.about
+{
+    padding: 5rem 0;
+}
+
+/* aise v about us ka neeche underline de sakte hain 
+    .about span
+    {
+        border-bottom: 6px solid #e63946;
+    }
+*/
+
+/*  iss tarah se v about us ka neeche border-bottom de sakte hain */
+.about-heading::after
+{
+    content: "";
+    display: block;
+    border: 3px solid #e63946;
+    /* width dene se content ka ander wala value utna width le lega jitna hum set karenge, 
+    or phir uska hisab se hi border set ho jaayega, but yahan par hum content ko empty rakhe hain to border top or bottom border combine jo jaayega or ek underline ka tarah dikhega. ek baar content ka ander kuch content likh ke try karo or phir about wala file browser mein open karo, samjh mein aa jaayega */
+    
+    /* 100% ---> jitna jagah hoga wo sab le lega  */
+    width: 100%;
+}
+
+/* ########################### About Wrapper Styling ############################## */
+
+.about-wrapper
+{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.about-wrapper .left
+{
+    float: left;
+    width: 50%;    
+}
+
+.about-wrapper .right
+{
+    float: right;
+    width: 50%;
+}
+
+.about-wrapper::after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.about-wrapper li::before
+{
+    /* tick mark ka code hai ye "\2713" */
+    content: "\2713";
+    color: #e63946;
+    font-weight: bold;
+    /* by default ye inline element hai or inline element ko left or right mein padding de sakte hain */
+    padding-right: 1rem;
+}
+
+/* ######################### Counts Styling ########################## */
+
+.counts
+{
+    margin-top: 3rem;
+}
+
+.count-item
+{
+    float: left;
+    /* chaaro count items 100% width le raha hai apna parent ka respect mein, to har ek item ko 25% width
+        set kar denge */
+    width: 25%;
+    text-align: center;
+}
+
+.counts::after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.count-item span
+{
+
+    font-size: 3rem;    /* 3rem matlab 30px */
+    font-weight: 700;
+    color: #e63946;
+}
+
+.count-item p
+{
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #555;
+}
+
+/* ############################ Banner Styling ############################ */
+
+.cta-banner
+{
+    background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
+    color: #f4f4f4;
+    padding: 1rem;
+    box-shadow: 5px 5px 10px #00000057;
+    margin-top: 2rem;
+}
+
+.cta-banner .cta-banner-left
+{
+    float: left;
+    width: 60%;
+}
+
+.cta-banner .cta-banner-right
+{
+    float: right;
+    width: 40%;
+    text-align: right;
+}
+
+.cta-line
+{
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 1.4rem;
+}
+
+.btn-cta
+{
+    text-align: center;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 3rem;
+    text-transform: uppercase;
+    border: 4px solid white;
+    padding: 0.3em 2.5em;
+    letter-spacing: 0.5rem;
+    color: #f4f4f4
+}
+
+.cta-banner::after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* ############################ Contact Page Styling ######################### */
+
+.contact-form
+{
+    padding: 5rem 0;
+    background: #f7f7f7;
+}
+
+.form-wrapper::after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.form-wrapper .company-address
+{
+    height: 760px;
+    background: #fff;
+    /* address or form ka beech thoda gap rakhne ke liye 49% ka width set kiye hain */
+    width: 49%;
+    float: left;
+    padding: 1rem;
+}
+
+.form-wrapper .address-group
+{
+    margin-bottom: 2rem;
+}
+
+.form-wrapper .company-address img
+{
+    max-width: 90%;
+    min-height: 30rem;
+    /* object-fit: cover; iska matlab image center se fix hai */
+    object-fit: cover;
+    /* object-position: right; iska matlab ab image right side se fix ho gaya hai */
+    object-position: right;
+}
+
+.form-wrapper .company-address i
+{
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.form-wrapper .company-address h2
+{
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* ############################# Form Styling ########################### */
+
+.form-wrapper .form
+{
+    height: 760px;
+    font-size: 1.6rem;
+    background: #fff;
+    width: 49%;
+    float: right;
+    padding: 1rem;
+}
+
+.form h1::after
+{
+    content: "";
+    display: block;
+    border: 2px solid #e63946;
+    width: 100%;
+}
+
+.form-wrapper .form label
+{
+    display: block;
+}
+
+.form-wrapper .form input
+{
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.form-wrapper .form .form-group
+{
+    margin-bottom: 1.2rem;
+}
+
+/* har label ka baad asterisk(*) dene ke liye */
+.form-wrapper .form label::after
+{
+    content: "*";
+    color: #e63946;
+}
+
+.form-wrapper .form textarea
+{
+    width: 100%;
+    height: 300px;
+    padding: 1rem;
+}
+
+.form-btn
+{
+    display: block;
+    margin: 0 auto;
+    padding: 0.5em 3em;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    background: #e63946;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ############################ Media Queries ############################# */
+
+/*
+jo device ka width 500px yaa usse kam hai usko pehle target kar rahe hain
+ 
+responsive website mein font size chhota hai to uske liye hum sara element ka font size chhota kar denge
+
+hum starting se hi font size rem mein set kiye hain, to agar hum root element ka font size change kar de to sara element ka font size change ho jaayega
+
+html ka root element html element hota hai
+
+*/
+
+@media (max-width: 500px)
+{
+    html
+    {
+        /* default font-size 16px hota hai, hum pehle 10px yaa 62.5% font-size set kiye the */
+        font-size: 8px;
+        font-size: 50%;
+    }
+
+    .navbar .nav-items, .navbar .logo
+    {
+        /* navigation bar or logo ko float none kar denge or dono ko center mein set kar denge */
+        float: none;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .header-content h1
+    {
+        /* hum phone pe contents thoda kam karne ke liye kuch element ko hataa dete hain */
+        /* display none se h1 display nhi hoga */
+        display: none;
+    }
+
+    .row
+    {
+        height: auto;
+        width: 100%;
+    }
+
+    .row .img-box, .row .text-box
+    {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .features .box-wrapper .box
+    {
+        float: none;
+        width: 100%;
+        text-align: center;
+        /* har ek box ko apna apna box-shadow de diye */
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.24);
+    }
+
+    .counts .count-item p
+    {
+        font-size: 12px;
+    }
+
+    .features .box-2, .features .box-3
+    {
+        margin-top: 7rem;
+    }
+
+    .box-wrapper
+    {
+        box-shadow: none;
+    }
+
+    .cta-banner .cta-banner-left, .cta-banner .cta-banner-right
+    {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-wrapper .company-address
+    {
+        float: none;
+        width: 100%;
+        /* agar desktop view ke liye height fix kiye the to yahan height auto kar dena hota hai */
+        height: auto;
+        /* form ka beech space ke liye margin-bottom diye hai */
+        margin-bottom: 5rem;
+    }
+
+    .form-wrapper .form
+    {
+        float: none;
+        width: 100%;
+        /* agar desktop view ke liye height fix kiye the to yahan height auto kar dena hota hai */
+        height: auto;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 768px)
+{
+    /* 
+    iss screen size ke liye sara chiz same rakhna hai jaisa 500px mein rakhe the lekin sirf font size thoda badhana hai, to uske liye v baaki ka code 500px wala copy karna hoga
+    
+    lekin jab sass padhenge tab humko ek hi chiz copy nhi karna hoga
+    */
+
+    p
+    {
+        font-size: 1.8rem;
+    }
+
+    html
+    {
+        /* default font-size 16px hota hai, hum pehle 10px yaa 62.5% font-size set kiye the */
+        font-size: 8px;
+        font-size: 50%;
+    }
+
+    .navbar .nav-items, .navbar .logo
+    {
+        /* navigation bar or logo ko float none kar denge or dono ko center mein set kar denge */
+        float: none;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 
+    .header-content h1
+    {
+        /* hum phone pe contents thoda kam karne ke liye kuch element ko hataa dete hain */
+        /* display none se h1 display nhi hoga */
+
+        /*
+         iss screen size ke liye humki h1 ka display none nhi karna hai isliye comment kar diye hain
+         */
+        /* display: none; 
+    } 
+    */
+
+    .row
+    {
+        height: auto;
+        width: 100%;
+    }
+
+    .row .img-box, .row .text-box
+    {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .features .box-wrapper .box
+    {
+        float: none;
+        width: 100%;
+        text-align: center;
+        /* har ek box ko apna apna box-shadow de diye */
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.24);
+    }
+
+    .features .box-2, .features .box-3
+    {
+        margin-top: 7rem;
+    }
+
+    .box-wrapper
+    {
+        box-shadow: none;
+    }
+
+    .cta-banner .cta-banner-left, .cta-banner .cta-banner-right
+    {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-wrapper .company-address
+    {
+        float: none;
+        width: 100%;
+        /* agar desktop view ke liye height fix kiye the to yahan height auto kar dena hota hai */
+        height: auto;
+        /* form ka beech space ke liye margin-bottom diye hai */
+        margin-bottom: 5rem;
+    }
+
+    .form-wrapper .form
+    {
+        float: none;
+        width: 100%;
+        /* agar desktop view ke liye height fix kiye the to yahan height auto kar dena hota hai */
+        height: auto;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1000px)
+{
+    html
+    {
+        /* 56.25% means 9px */
+        font-size: 56.25%;
+    }
+
+    .row .text-box h2
+    {
+        font-size: 2rem;
+    }
+
+    .cta-banner .cta-banner-left, .cta-banner .cta-banner-right
+    {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/*
+ jab website ko landscape mode mein dekh rahe hain to header achcha nhi dikh raha hai to iss tarah ka condition lagane ke liye hum alag media query use karenge
+
+*/
+
+/* landscape mode matlab width bada ho jaata hai or height chhota hota hai */
+/* @media(orientation: landscape)
+{
+    .header
+    {
+    
+        landscape mode mein header ka  height 90% of width set ho jaaye, or vmax matlab jo v bada hoga chahe height yaa width uske according set hoga
+
+        yahan width bada hai to header ka height width ka 90% set ho jaayega
+
+        but upar mein jo condition likhe hain wo tab v valid ho jaayega tab hum desktop use kar rahe honge, to uss samay v header ka height width ka 90% set ho jaayega jisse header bekar dikhega to condition mein or v kuch add karna hoga tab sahi hoga, to iska neeche wala media query, phone pe landscape mode ke liye sahi hoga
+
+         height: 90vmax ; 
+    }
+} */
+
+
+/* jab height 500px yaa usse chhota ho or landscape mode hoga tab ye media query kaam karega */
+@media(orientation: landscape) and (max-height: 500px)
+{
+    .header
+    {
+        height: 90vmax;
+    }
+}
